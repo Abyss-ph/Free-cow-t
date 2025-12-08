@@ -6,7 +6,7 @@ public class BotoesMenu : MonoBehaviour
 
     public void IniciarJogo()
     {
-        SceneManager.LoadScene("game");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void SairDoJogo()
@@ -14,5 +14,8 @@ public class BotoesMenu : MonoBehaviour
         Application.Quit();
     }
 
-
+    public void VoltarProMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }

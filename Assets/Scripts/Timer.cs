@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour
     [SerializeField] TextMeshProUGUI textoTimer;
     [SerializeField] float tempoRestante;
 
+    public string TelaPraEsconder = "FimDeJogo";
 
     public bool acabou = false;
 
@@ -13,6 +14,12 @@ public class Timer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Transform filho = transform.Find(TelaPraEsconder);
+        filho.gameObject.SetActive(false);
+
+        Time.timeScale = 1;
+        acabou = false;
+
         int minutos = Mathf.FloorToInt(tempoRestante / 60);
         int segundos = Mathf.FloorToInt(tempoRestante % 60);
         textoTimer.text = string.Format("{0:00}:{1:00}", minutos, segundos);
@@ -31,10 +38,11 @@ public class Timer : MonoBehaviour
             textoTimer.color = Color.red;
             acabou = true;
             Time.timeScale = 0;
+
+            Transform filho = transform.Find(TelaPraEsconder);
+            filho.gameObject.SetActive(true);
+        
         }
-
-
-
 
 
 

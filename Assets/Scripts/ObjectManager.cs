@@ -5,7 +5,7 @@ public class ObjectManager : MonoBehaviour
 {
     // Declara variável de referência para o texto de UI 
     public TextMeshProUGUI clickerCountText;
-    
+
     // Declara variável para contagem de cliques
     public int clickCount = 0;
 
@@ -17,20 +17,27 @@ public class ObjectManager : MonoBehaviour
 
     [SerializeField] Timer meuTimer;
 
+    void start()
+    {
+        clickCount = 0;
+    }
+
     // Método para clique no objeto principal
     void OnMouseDown()
     {
-        if(meuTimer.acabou == false)
+        if (meuTimer.acabou == false)
+        {
+            // Aumenta o valor da variável de contagem
+            clickCount++;
 
-        // Aumenta o valor da variável de contagem
-        clickCount++;
+            // Seta o valor atualizado da variável no texto da UI
+            clickerCountText.text = clickCount.ToString();
 
-        // Seta o valor atualizado da variável no texto da UI
-        clickerCountText.text = clickCount.ToString();
+            // Cria objetos (instâncias) ao clicar no objeto principal
+            Instantiate(spawnObject, spawnPoint.position, spawnPoint.rotation);
 
-        // Cria objetos (instâncias) ao clicar no objeto principal
-        Instantiate(spawnObject, spawnPoint.position, spawnPoint.rotation);
-              
+        }
+
     }
-
+ 
 }
